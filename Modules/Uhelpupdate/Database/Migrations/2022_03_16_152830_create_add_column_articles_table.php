@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('articles', function (Blueprint $table) {
-            $table->boolean('privatemode')->nullable()->after('status');
-        });
+        Schema::table(
+            'articles', function (Blueprint $table) {
+                $table->boolean('privatemode')->nullable()->after('status');
+            }
+        );
     }
 
     /**

@@ -25,14 +25,14 @@ class AdminSeeder extends Seeder
         
 
         // create permissions
-		$this->createPermissions();
+        $this->createPermissions();
 
-		// create roles
-		$this->createRoles();
+        // create roles
+        $this->createRoles();
 
-		// assign roles and permissions
-		$this->assignPermissions();
-		
+        // assign roles and permissions
+        $this->assignPermissions();
+        
         // $user = User::create(['firstname' => 'Admin',
         //     'lastname' => '1',
         //     'email' => 'admin@admin.com',
@@ -52,53 +52,54 @@ class AdminSeeder extends Seeder
         // $usersetting->users_id = $users->id;
         // $usersetting->save();
 
-    // $userss = User::create(
-    //     [   'firstname' => 'Agent',
-    //         'lastname' => 'Agent',
-    //         'email' => 'agent@agent.com',
-    //         'verified' => '1',
-    //         'status' => '1',
-    //         'image' => null,
-    //         'password' =>Hash::make('agent1234'),
-    //         'country' => '',
-    //         'timezone' => 'UTC',
-    //         'remember_token' => '',
-    //     ]
-    // );
-    //     $usersss = User::find($userss->id);
-    //     $usersss->name = $userss->firstname.' '.$userss->lastname;
-    //     $usersss->update();
+        // $userss = User::create(
+        //     [   'firstname' => 'Agent',
+        //         'lastname' => 'Agent',
+        //         'email' => 'agent@agent.com',
+        //         'verified' => '1',
+        //         'status' => '1',
+        //         'image' => null,
+        //         'password' =>Hash::make('agent1234'),
+        //         'country' => '',
+        //         'timezone' => 'UTC',
+        //         'remember_token' => '',
+        //     ]
+        // );
+        //     $usersss = User::find($userss->id);
+        //     $usersss->name = $userss->firstname.' '.$userss->lastname;
+        //     $usersss->update();
 
-    //     $usersetting = new usersettings();
-    //     $usersetting->users_id = $usersss->id;
-    //     $usersetting->save();
+        //     $usersetting = new usersettings();
+        //     $usersetting->users_id = $usersss->id;
+        //     $usersetting->save();
 
         
 
-    //     $customer = Customer::create(['firstname' => '',
-    //         'lastname' => '',
-    //         'username' => 'Customer',
-    //         'email' => 'customer@gmail.com',
-    //         'gender' => 'Male',
-    //         'verified' => '1',
-    //         'status' => '1',
-    //         'image' => null,
-    //         'password' =>Hash::make('customer1234'),
-    //         'country' => '',
-    //         'userType' => 'Customer',
-    //         'timezone' => 'UTC',
-    //         'remember_token' => '',
-    //     ]);
-    //     $customersetting = new CustomerSetting();
-    //     $customersetting->custs_id = $customer->id;
-    //     $customersetting->save();
+        //     $customer = Customer::create(['firstname' => '',
+        //         'lastname' => '',
+        //         'username' => 'Customer',
+        //         'email' => 'customer@gmail.com',
+        //         'gender' => 'Male',
+        //         'verified' => '1',
+        //         'status' => '1',
+        //         'image' => null,
+        //         'password' =>Hash::make('customer1234'),
+        //         'country' => '',
+        //         'userType' => 'Customer',
+        //         'timezone' => 'UTC',
+        //         'remember_token' => '',
+        //     ]);
+        //     $customersetting = new CustomerSetting();
+        //     $customersetting->custs_id = $customer->id;
+        //     $customersetting->save();
 
-    //     $this->assignRoles();
-		
-		
+        //     $this->assignRoles();
+        
+        
     }
 
-    public function createPermissions(){
+    public function createPermissions()
+    {
 
         //Edit Profile
         Permission::create(['name' => 'Profile Edit'  , 'guard_name' => 'web',]);
@@ -233,31 +234,32 @@ class AdminSeeder extends Seeder
 
     }
 
-    public function createRoles(){
+    public function createRoles()
+    {
 
         Role::create(['name' => 'superadmin', 'guard_name' => 'web',]);
         // Role::create(['name' => 'agent' , 'guard_name' => 'web',]);
     }
 
     public function assignPermissions()
-	{
+    {
 
         $role = Role::where('name', 'superadmin')->first();
         $permissions = Permission::get();
         foreach ( $permissions as $code ) {
-			$role->givePermissionTo($code);
-		};
+            $role->givePermissionTo($code);
+        };
     }
 
     public function assignRoles()
-	{
-		
-		// $user = User::find(1);
-		// $user->assignRole('superadmin');
+    {
+        
+        // $user = User::find(1);
+        // $user->assignRole('superadmin');
         // $users = User::find(2);
-		// $users->assignRole('agent');
+        // $users->assignRole('agent');
 
 
 
-	}
+    }
 }

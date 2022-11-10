@@ -13,14 +13,16 @@ class CreateCustomerSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('customer_settings', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('custs_id');
-            $table->bigInteger('darkmode')->nullable();
+        Schema::create(
+            'customer_settings', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('custs_id');
+                $table->bigInteger('darkmode')->nullable();
             
-            $table->foreign('custs_id')->references('id')->on('customers')->onCascade('UPDATE')->onCascade('DELETE');
-            $table->timestamps();
-        });
+                $table->foreign('custs_id')->references('id')->on('customers')->onCascade('UPDATE')->onCascade('DELETE');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

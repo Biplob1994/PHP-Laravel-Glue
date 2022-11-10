@@ -13,11 +13,13 @@ class CreateTableGroups extends Migration
      */
     public function up()
     {
-        Schema::create('groups', function (Blueprint $table) {
-            $table->id();
-            $table->string('groupname')->unique();
-            $table->timestamps();
-        });
+        Schema::create(
+            'groups', function (Blueprint $table) {
+                $table->id();
+                $table->string('groupname')->unique();
+                $table->timestamps();
+            }
+        );
     }
 
     /**

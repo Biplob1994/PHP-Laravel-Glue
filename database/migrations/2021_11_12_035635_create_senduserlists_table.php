@@ -13,16 +13,18 @@ class CreateSenduserlistsTable extends Migration
      */
     public function up()
     {
-        Schema::create('senduserlists', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('mail_id');
-            $table->foreign('mail_id')->references('id')->on('sendmails')->onCascade('UPDATE')->onCascade('DELETE');
-            $table->unsignedBigInteger('touser_id')->nullable();
-            $table->foreign('touser_id')->references('id')->on('users')->onCascade('UPDATE')->onCascade('DELETE');
-            $table->unsignedBigInteger('tocust_id')->nullable();
-            $table->foreign('tocust_id')->references('id')->on('customers')->onCascade('UPDATE')->onCascade('DELETE');
-            $table->timestamps();
-        });
+        Schema::create(
+            'senduserlists', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('mail_id');
+                $table->foreign('mail_id')->references('id')->on('sendmails')->onCascade('UPDATE')->onCascade('DELETE');
+                $table->unsignedBigInteger('touser_id')->nullable();
+                $table->foreign('touser_id')->references('id')->on('users')->onCascade('UPDATE')->onCascade('DELETE');
+                $table->unsignedBigInteger('tocust_id')->nullable();
+                $table->foreign('tocust_id')->references('id')->on('customers')->onCascade('UPDATE')->onCascade('DELETE');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

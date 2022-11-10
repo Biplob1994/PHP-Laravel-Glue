@@ -13,13 +13,15 @@ class Timezones extends Migration
      */
     public function up()
     {
-        Schema::create('timezones', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('offset');
-            $table->string('diff_from_gtm');
-            $table->timestamps();
-        });
+        Schema::create(
+            'timezones', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->string('offset');
+                $table->string('diff_from_gtm');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

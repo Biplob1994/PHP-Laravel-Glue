@@ -13,20 +13,24 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('subcategorysd', function (Blueprint $table) {
-            $table->id();
-            $table->string('subcategoryname')->nullable();
-            $table->boolean('status');
-            $table->timestamps();
-        });
+        Schema::create(
+            'subcategorysd', function (Blueprint $table) {
+                $table->id();
+                $table->string('subcategoryname')->nullable();
+                $table->boolean('status');
+                $table->timestamps();
+            }
+        );
 
-        Schema::create('subcategoryschild', function (Blueprint $table) {
-            $table->bigInteger('subcategory_id')->unsigned();
-            $table->bigInteger('category_id')->unsigned();
-            $table->primary(['category_id', 'subcategory_id']);
-            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('subcategory_id')->references('id')->on('subcategorysd')->onUpdate('cascade')->onDelete('cascade');
-        });
+        Schema::create(
+            'subcategoryschild', function (Blueprint $table) {
+                $table->bigInteger('subcategory_id')->unsigned();
+                $table->bigInteger('category_id')->unsigned();
+                $table->primary(['category_id', 'subcategory_id']);
+                $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
+                $table->foreign('subcategory_id')->references('id')->on('subcategorysd')->onUpdate('cascade')->onDelete('cascade');
+            }
+        );
     }
 
     /**

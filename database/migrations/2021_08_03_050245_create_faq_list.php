@@ -13,12 +13,14 @@ class CreateFaqList extends Migration
      */
     public function up()
     {
-        Schema::create('faq_list', function (Blueprint $table) {
-            $table->id();
-            $table->string('question');
-            $table->longtext('answer');
-            $table->timestamps();
-        });
+        Schema::create(
+            'faq_list', function (Blueprint $table) {
+                $table->id();
+                $table->string('question');
+                $table->longtext('answer');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

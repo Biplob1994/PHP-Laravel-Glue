@@ -14,12 +14,14 @@ class SeopageSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('seosettings')->insert([
+        DB::table('seosettings')->insert(
+            [
             'author' => 'My Desk',
             'description' => 'Looking For help?',
             'keywords' =>'Why Choose US ?',
             'created_at' => now(),
             'updated_at' => now(),
-        ]);
+            ]
+        );
     }
 }

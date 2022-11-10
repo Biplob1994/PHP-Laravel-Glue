@@ -17,6 +17,7 @@ class EnvatoApiTokenController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
      * @return Renderable
      */
     public function index()
@@ -42,6 +43,7 @@ class EnvatoApiTokenController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
      * @return Renderable
      */
     public function create()
@@ -51,7 +53,8 @@ class EnvatoApiTokenController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param Request $request
+     *
+     * @param  Request $request
      * @return Renderable
      */
     public function store(Request $request)
@@ -61,7 +64,8 @@ class EnvatoApiTokenController extends Controller
 
     /**
      * Show the specified resource.
-     * @param int $id
+     *
+     * @param  int $id
      * @return Renderable
      */
     public function show($id)
@@ -71,7 +75,8 @@ class EnvatoApiTokenController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * @param int $id
+     *
+     * @param  int $id
      * @return Renderable
      */
     public function edit($id)
@@ -81,8 +86,9 @@ class EnvatoApiTokenController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
+     *
+     * @param  Request $request
+     * @param  int     $id
      * @return Renderable
      */
     public function update(Request $request, $id)
@@ -92,7 +98,8 @@ class EnvatoApiTokenController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     * @param int $id
+     *
+     * @param  int $id
      * @return Renderable
      */
     public function destroy($id)
@@ -149,7 +156,7 @@ class EnvatoApiTokenController extends Controller
         $header[] = 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:41.0) Gecko/20100101 Firefox/41.0';
         $header[] = 'timeout: 20';
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_HTTPHEADER,$header);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
         
         /*Connect to the API, and get values from there*/
         $envatoCheck = curl_exec($curl);
@@ -159,19 +166,19 @@ class EnvatoApiTokenController extends Controller
         $envatoCheck = json_decode($envatoCheck);
 
         /*Variable request from the API*/
-        $date = new \DateTime(isset($envatoCheck->supported_until) ? $envatoCheck->supported_until : false);							
+        $date = new \DateTime(isset($envatoCheck->supported_until) ? $envatoCheck->supported_until : false);                            
         $support_date = $date->format('Y-m-d H:i:s');
         $sold = new \DateTime(isset($envatoCheck->sold_at) ? $envatoCheck->sold_at : false);
         $sold_at = $sold->format('Y-m-d H:i:s');
-        $buyer = (isset( $envatoCheck->buyer) ? $envatoCheck->buyer : false);
-        $license = (isset( $envatoCheck->license) ? $envatoCheck->license : false);
-        $count = (isset( $envatoCheck->purchase_count) ? $envatoCheck->purchase_count : false);
-        $support_amount = (isset( $envatoCheck->support_amount) ? $envatoCheck->support_amount : false);
-        $item  = (isset( $envatoCheck->item->previews->icon_preview->icon_url ) ? $envatoCheck->item->previews->icon_preview->icon_url  : false);
+        $buyer = (isset($envatoCheck->buyer) ? $envatoCheck->buyer : false);
+        $license = (isset($envatoCheck->license) ? $envatoCheck->license : false);
+        $count = (isset($envatoCheck->purchase_count) ? $envatoCheck->purchase_count : false);
+        $support_amount = (isset($envatoCheck->support_amount) ? $envatoCheck->support_amount : false);
+        $item  = (isset($envatoCheck->item->previews->icon_preview->icon_url) ? $envatoCheck->item->previews->icon_preview->icon_url  : false);
 
         $output = "";
         /*If Purchase code exists, But Purchase ended*/
-        if (isset($envatoCheck->item->name) && (date('Y-m-d H:i:s') >= $support_date)){   
+        if (isset($envatoCheck->item->name) && (date('Y-m-d H:i:s') >= $support_date)) {   
 
             $output .=  "
                 <hr>
@@ -253,7 +260,7 @@ class EnvatoApiTokenController extends Controller
         }
 
         /*If Purchase code exists, display client information*/
-        if (isset($envatoCheck->item->name) && (date('Y-m-d H:i:s') < $support_date)){   
+        if (isset($envatoCheck->item->name) && (date('Y-m-d H:i:s') < $support_date)) {   
 
             $output .=  "
                 <hr>
@@ -335,7 +342,7 @@ class EnvatoApiTokenController extends Controller
         }
 
         /*If Purchase Code doesn't exist, no information will be displayed*/
-        if (!isset($envatoCheck->item->name)){   
+        if (!isset($envatoCheck->item->name)) {   
 
             $output .=  "
 
@@ -358,7 +365,7 @@ class EnvatoApiTokenController extends Controller
         $envato_license = $request->envatopurchase_id;
 
         $url = "https://api.envato.com/v3/market/author/sale?code=".$envato_license;
-    $curl = curl_init($url);
+        $curl = curl_init($url);
 
         $personal_api_token = $apidatatoken != null ? $apidatatoken->envatoapitoken : '';
 
@@ -368,7 +375,7 @@ class EnvatoApiTokenController extends Controller
         $header[] = 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:41.0) Gecko/20100101 Firefox/41.0';
         $header[] = 'timeout: 20';
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_HTTPHEADER,$header);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
         
         /*Connect to the API, and get values from there*/
         $envatoCheck = curl_exec($curl);
@@ -378,19 +385,19 @@ class EnvatoApiTokenController extends Controller
         $envatoCheck = json_decode($envatoCheck);
 
         /*Variable request from the API*/
-        $date = new \DateTime(isset($envatoCheck->supported_until) ? $envatoCheck->supported_until : false);							
+        $date = new \DateTime(isset($envatoCheck->supported_until) ? $envatoCheck->supported_until : false);                            
         $support_date = $date->format('Y-m-d H:i:s');
         $sold = new \DateTime(isset($envatoCheck->sold_at) ? $envatoCheck->sold_at : false);
         $sold_at = $sold->format('Y-m-d H:i:s');
-        $buyer = (isset( $envatoCheck->buyer) ? $envatoCheck->buyer : false);
-        $license = (isset( $envatoCheck->license) ? $envatoCheck->license : false);
-        $count = (isset( $envatoCheck->purchase_count) ? $envatoCheck->purchase_count : false);
-        $support_amount = (isset( $envatoCheck->support_amount) ? $envatoCheck->support_amount : false);
-        $item  = (isset( $envatoCheck->item->previews->icon_with_video_preview->landscape_url ) ? $envatoCheck->item->previews->icon_with_video_preview->landscape_url  : false);
+        $buyer = (isset($envatoCheck->buyer) ? $envatoCheck->buyer : false);
+        $license = (isset($envatoCheck->license) ? $envatoCheck->license : false);
+        $count = (isset($envatoCheck->purchase_count) ? $envatoCheck->purchase_count : false);
+        $support_amount = (isset($envatoCheck->support_amount) ? $envatoCheck->support_amount : false);
+        $item  = (isset($envatoCheck->item->previews->icon_with_video_preview->landscape_url) ? $envatoCheck->item->previews->icon_with_video_preview->landscape_url  : false);
 
         $output = "";
         /*If Purchase code exists, But Purchase ended*/
-        if (isset($envatoCheck->item->name) && (date('Y-m-d H:i:s') >= $support_date)){   
+        if (isset($envatoCheck->item->name) && (date('Y-m-d H:i:s') >= $support_date)) {   
 
             $output .=  "
                 <table class='table table-striped table-bordered'>
@@ -427,7 +434,7 @@ class EnvatoApiTokenController extends Controller
         }
 
         /*If Purchase code exists, display client information*/
-        if (isset($envatoCheck->item->name)  && (date('Y-m-d H:i:s') < $support_date)){   
+        if (isset($envatoCheck->item->name)  && (date('Y-m-d H:i:s') < $support_date)) {   
 
             $output .=  "
                 <table class='table table-striped table-bordered'>
@@ -463,7 +470,7 @@ class EnvatoApiTokenController extends Controller
         }
 
         /*If Purchase Code doesn't exist, no information will be displayed*/
-        if (!isset($envatoCheck->item->name)){   
+        if (!isset($envatoCheck->item->name)) {   
 
             $output .=  "
 

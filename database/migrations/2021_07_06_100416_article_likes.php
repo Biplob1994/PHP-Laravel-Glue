@@ -13,13 +13,15 @@ class ArticleLikes extends Migration
      */
     public function up()
     {
-        Schema::create('articles_likes', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('article_id');
-            $table->BigInteger('rating');
-            $table->timestamps();
-        });
+        Schema::create(
+            'articles_likes', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('user_id');
+                $table->unsignedBigInteger('article_id');
+                $table->BigInteger('rating');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

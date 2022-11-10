@@ -13,14 +13,16 @@ class CreateSendmailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sendmails', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('mailsubject');
-            $table->longtext('mailtext');
-            $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onCascade('UPDATE')->onCascade('DELETE');
-        });
+        Schema::create(
+            'sendmails', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('user_id');
+                $table->string('mailsubject');
+                $table->longtext('mailtext');
+                $table->timestamps();
+                $table->foreign('user_id')->references('id')->on('users')->onCascade('UPDATE')->onCascade('DELETE');
+            }
+        );
     }
 
     /**

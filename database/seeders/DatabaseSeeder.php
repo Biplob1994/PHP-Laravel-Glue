@@ -33,7 +33,8 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        $this->call([
+        $this->call(
+            [
 
             RoleSeeder::class,
             CountrySeeder::class,
@@ -50,6 +51,7 @@ class DatabaseSeeder extends Seeder
             TestimonialSeeder::class,
             FaqSeeder::class,
             UhelpupdateDatabaseSeeder::class,
-        ]);
+            ]
+        );
     }
 }

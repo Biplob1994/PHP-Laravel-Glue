@@ -19,7 +19,8 @@ class TitleSeeder extends Seeder
      */
     public function run()
     {
-        $title = Apptitle::create([
+        $title = Apptitle::create(
+            [
 
             'title' => env('APP_NAME'),
             'searchtitle' => 'Looking For help?',
@@ -42,10 +43,12 @@ class TitleSeeder extends Seeder
             'faqsub' => 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
 
 
-        ]);
+            ]
+        );
 
 
-        $call = callaction::create([
+        $call = callaction::create(
+            [
 
             'callcheck' => 'on',
             'title'  => 'Need Support & Response within 24 hours?',
@@ -55,26 +58,33 @@ class TitleSeeder extends Seeder
             'buttonurl'  => '#',
            
 
-        ]);
+            ]
+        );
 
-        $box = FeatureBox::create([
+        $box = FeatureBox::create(
+            [
             'title' => 'Secure Payment',
             'subtitle' => 'Nam libero tempore, cum soluta nobis est eligendi cumque facere possimus',
             'image' => null,
             
-        ]);
-        $box = FeatureBox::create([
+            ]
+        );
+        $box = FeatureBox::create(
+            [
             'title' => 'Quality Templates',
             'subtitle' => 'Nam libero tempore, cum soluta nobis est eligendi cumque facere possimus',
             'image' => null,
             
-        ]);
-        $box = FeatureBox::create([
+            ]
+        );
+        $box = FeatureBox::create(
+            [
             'title' => '24/7 Support',
             'subtitle' => 'Nam libero tempore, cum soluta nobis est eligendi cumque facere possimus',
             'image' => null,
             
-        ]);
+            ]
+        );
 
 
        

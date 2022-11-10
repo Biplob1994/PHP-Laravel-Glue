@@ -13,18 +13,20 @@ class CreateTableArticles extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->bigInteger('category_id')->unsigned();
-            $table->longtext('message');
-            $table->longtext('tags');
-            $table->integer('views')->default(0);
-            $table->string('featureimage')->nullable();
-            $table->string('status');
-            $table->timestamps();
-            $table->foreign('category_id')->references('id')->on('categories');
-        });
+        Schema::create(
+            'articles', function (Blueprint $table) {
+                $table->id();
+                $table->string('title');
+                $table->bigInteger('category_id')->unsigned();
+                $table->longtext('message');
+                $table->longtext('tags');
+                $table->integer('views')->default(0);
+                $table->string('featureimage')->nullable();
+                $table->string('status');
+                $table->timestamps();
+                $table->foreign('category_id')->references('id')->on('categories');
+            }
+        );
     }
 
     /**

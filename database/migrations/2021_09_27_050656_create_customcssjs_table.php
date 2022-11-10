@@ -13,12 +13,14 @@ class CreateCustomcssjsTable extends Migration
      */
     public function up()
     {
-        Schema::create('customcssjs', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->longText('value')->nullable();
-            $table->timestamps();
-        });
+        Schema::create(
+            'customcssjs', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->longText('value')->nullable();
+                $table->timestamps();
+            }
+        );
     }
 
     /**

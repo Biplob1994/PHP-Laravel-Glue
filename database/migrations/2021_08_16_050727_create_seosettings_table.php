@@ -13,13 +13,15 @@ class CreateSeosettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('seosettings', function (Blueprint $table) {
-            $table->id();
-            $table->string('author');
-            $table->string('description');
-            $table->text('keywords');
-            $table->timestamps();
-        });
+        Schema::create(
+            'seosettings', function (Blueprint $table) {
+                $table->id();
+                $table->string('author');
+                $table->string('description');
+                $table->text('keywords');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

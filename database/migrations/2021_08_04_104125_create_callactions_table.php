@@ -13,16 +13,18 @@ class CreateCallactionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('callactions', function (Blueprint $table) {
-            $table->id();
-            $table->string('callcheck');
-            $table->string('title');
-            $table->string('subtitle')->nullable();
-            $table->string('buttonname');
-            $table->string('buttonurl');
-            $table->string('image')->nullable();
-            $table->timestamps();
-        });
+        Schema::create(
+            'callactions', function (Blueprint $table) {
+                $table->id();
+                $table->string('callcheck');
+                $table->string('title');
+                $table->string('subtitle')->nullable();
+                $table->string('buttonname');
+                $table->string('buttonurl');
+                $table->string('image')->nullable();
+                $table->timestamps();
+            }
+        );
     }
 
     /**

@@ -13,31 +13,35 @@ class CreateSocialAuthSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('social_auth_settings', function (Blueprint $table) {
-            $table->id();
-            $table->string('facebook_client_id')->nullable();
-            $table->string('facebook_secret_id')->nullable();
-            $table->enum('facebook_status', ['enable', 'disable'])->default('disable');
-            $table->string('google_client_id')->nullable();
-            $table->string('google_secret_id')->nullable();
-            $table->enum('google_status', ['enable', 'disable'])->default('disable');
-            $table->string('twitter_client_id')->nullable();
-            $table->string('twitter_secret_id')->nullable();
-            $table->enum('twitter_status', ['enable', 'disable'])->default('disable');
-            $table->string('envato_client_id')->nullable();
-            $table->string('envato_secret_id')->nullable();
-            $table->enum('envato_status', ['enable', 'disable'])->default('disable');
-            $table->timestamps();
-        });
+        Schema::create(
+            'social_auth_settings', function (Blueprint $table) {
+                $table->id();
+                $table->string('facebook_client_id')->nullable();
+                $table->string('facebook_secret_id')->nullable();
+                $table->enum('facebook_status', ['enable', 'disable'])->default('disable');
+                $table->string('google_client_id')->nullable();
+                $table->string('google_secret_id')->nullable();
+                $table->enum('google_status', ['enable', 'disable'])->default('disable');
+                $table->string('twitter_client_id')->nullable();
+                $table->string('twitter_secret_id')->nullable();
+                $table->enum('twitter_status', ['enable', 'disable'])->default('disable');
+                $table->string('envato_client_id')->nullable();
+                $table->string('envato_secret_id')->nullable();
+                $table->enum('envato_status', ['enable', 'disable'])->default('disable');
+                $table->timestamps();
+            }
+        );
 
         
 
-        \App\Models\SocialAuthSetting::create([
+        \App\Models\SocialAuthSetting::create(
+            [
             'facebook_status' => 'disable',
             'google_status' => 'disable',
             'twitter_status' => 'disable',
             'envato_status' => 'disable',
-        ]);
+            ]
+        );
     }
 
     /**

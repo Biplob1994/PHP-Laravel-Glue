@@ -17,7 +17,8 @@ class EmailTemplateSeederTableSeeder extends Seeder
     {
         Model::unguard();
 
-        DB::table('email_templates')->insert([
+        DB::table('email_templates')->insert(
+            [
 
             [
                 'code' => 'guestticket_email_verification',
@@ -30,6 +31,7 @@ class EmailTemplateSeederTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
-        ]);
+            ]
+        );
     }
 }

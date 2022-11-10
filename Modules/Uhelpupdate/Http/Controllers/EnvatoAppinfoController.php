@@ -20,6 +20,7 @@ class EnvatoAppinfoController extends Controller
     use ApichecktraitHelper;
     /**
      * Display a listing of the resource.
+     *
      * @return Renderable
      */
     public function index()
@@ -74,7 +75,7 @@ class EnvatoAppinfoController extends Controller
             // Format object data
             $result = json_decode($checkapis);
             
-            if($result != null){
+            if($result != null) {
                 $output .= '
                     <div class="card">
                         <div class="card-header border-0">
@@ -116,7 +117,7 @@ class EnvatoAppinfoController extends Controller
                     </div>
                 ';
             }
-            if($result == null){
+            if($result == null) {
                 $output .= '
                     <div class="card">
                         <div class="card-header border-0">
@@ -149,6 +150,7 @@ class EnvatoAppinfoController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
      * @return Renderable
      */
     public function create()
@@ -158,7 +160,8 @@ class EnvatoAppinfoController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param Request $request
+     *
+     * @param  Request $request
      * @return Renderable
      */
     public function store(Request $request)
@@ -170,26 +173,27 @@ class EnvatoAppinfoController extends Controller
         }
         if ($purchaseCodeData->valid == true) {
 
-            if($purchaseCodeData->item_id != config('installer.requirements.itemId')){
+            if($purchaseCodeData->item_id != config('installer.requirements.itemId')) {
                 
                 return redirect()->back()->with('error', 'Invalid purchase code. Incorrect data format.');
             }
-            if($purchaseCodeData->item_id == config('installer.requirements.itemId')){
-                $purchaseCodeDatas = $this->purchaseCodecreate($request->envato_id, $request->app_firstname,$request->app_lastname, $request->app_email, url('/'),
-                $purchaseCodeData->license, $purchaseCodeData->buyer, $purchaseCodeData->author);
+            if($purchaseCodeData->item_id == config('installer.requirements.itemId')) {
+                $purchaseCodeDatas = $this->purchaseCodecreate(
+                    $request->envato_id, $request->app_firstname, $request->app_lastname, $request->app_email, url('/'),
+                    $purchaseCodeData->license, $purchaseCodeData->buyer, $purchaseCodeData->author
+                );
                 
-                if($purchaseCodeDatas->App == 'old'){
+                if($purchaseCodeDatas->App == 'old') {
                     return redirect()->back()->with('error', 'Purchase Code Already Installed On Other domain');
                 }
-                if($purchaseCodeDatas->App == 'New')
-                {
+                if($purchaseCodeDatas->App == 'New') {
 
                     $data['envato_purchasecode'] = $request->envato_id;
                     $this->updateSettings($data);
 
                     return redirect()->back()->with('success', 'Purchase Code Added Successfully');
                 }
-                if($purchaseCodeDatas->App == 'update'){
+                if($purchaseCodeDatas->App == 'update') {
                     return redirect()->back()->with('error', 'Purchase Code Already Installed On Other domain');
                 }
             }
@@ -198,7 +202,8 @@ class EnvatoAppinfoController extends Controller
 
     /**
      * Show the specified resource.
-     * @param int $id
+     *
+     * @param  int $id
      * @return Renderable
      */
     public function show($id)
@@ -208,7 +213,8 @@ class EnvatoAppinfoController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * @param int $id
+     *
+     * @param  int $id
      * @return Renderable
      */
     public function edit($id)
@@ -218,8 +224,9 @@ class EnvatoAppinfoController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
+     *
+     * @param  Request $request
+     * @param  int     $id
      * @return Renderable
      */
     public function update(Request $request, $id)
@@ -229,7 +236,8 @@ class EnvatoAppinfoController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     * @param int $id
+     *
+     * @param  int $id
      * @return Renderable
      */
     public function destroy($id)
@@ -250,7 +258,7 @@ class EnvatoAppinfoController extends Controller
         $data['envato_purchasecode'] = null;
         $this->updateSettings($data);
   
-       return redirect()->back()->with('error', 'Deleted Successfully');
+        return redirect()->back()->with('error', 'Deleted Successfully');
       
         // dd('a4edd8b1-b48e-42e7-8a5c-77a86c44ad93');
     }
@@ -264,9 +272,10 @@ class EnvatoAppinfoController extends Controller
     {
 
         foreach($data as $key => $val){
-        	$setting = Setting::where('key', $key);
-        	if( $setting->exists() )
-        		$setting->first()->update(['value' => $val]);
+            $setting = Setting::where('key', $key);
+            if($setting->exists() ) {
+                $setting->first()->update(['value' => $val]);
+            }
         }
 
     }

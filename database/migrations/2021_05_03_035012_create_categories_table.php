@@ -14,18 +14,22 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
 
-        Schema::create('projects', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->timestamps();
-        });
+        Schema::create(
+            'projects', function (Blueprint $table) {
+                $table->id();
+                $table->string('name')->unique();
+                $table->timestamps();
+            }
+        );
 
 
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->timestamps();
-        });
+        Schema::create(
+            'categories', function (Blueprint $table) {
+                $table->id();
+                $table->string('name')->unique();
+                $table->timestamps();
+            }
+        );
     }
 
     /**

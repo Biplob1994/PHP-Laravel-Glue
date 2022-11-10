@@ -13,13 +13,15 @@ class CreateFeatureBoxesTable extends Migration
      */
     public function up()
     {
-        Schema::create('feature_boxes', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('subtitle')->nullable();
-            $table->string('image')->nullable();
-            $table->timestamps();
-        });
+        Schema::create(
+            'feature_boxes', function (Blueprint $table) {
+                $table->id();
+                $table->string('title');
+                $table->string('subtitle')->nullable();
+                $table->string('image')->nullable();
+                $table->timestamps();
+            }
+        );
     }
 
     /**

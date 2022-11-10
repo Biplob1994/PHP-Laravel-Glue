@@ -13,12 +13,14 @@ class CreateAddColoumnCategory extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function (Blueprint $table) {
+        Schema::table(
+            'categories', function (Blueprint $table) {
 
-            $table->string('display')->nullable()->after('name');
-            $table->string('status')->nullable()->after('display');
+                $table->string('display')->nullable()->after('name');
+                $table->string('status')->nullable()->after('display');
              
-        });
+            }
+        );
     }
 
     /**

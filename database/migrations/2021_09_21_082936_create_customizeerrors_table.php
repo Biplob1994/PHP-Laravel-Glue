@@ -13,12 +13,14 @@ class CreateCustomizeerrorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('customizeerrors', function (Blueprint $table) {
-            $table->id();
-            $table->string('errorname');
-            $table->string('errorvalue', 10000)->nullable();
-            $table->timestamps();
-        });
+        Schema::create(
+            'customizeerrors', function (Blueprint $table) {
+                $table->id();
+                $table->string('errorname');
+                $table->string('errorvalue', 10000)->nullable();
+                $table->timestamps();
+            }
+        );
     }
 
     /**

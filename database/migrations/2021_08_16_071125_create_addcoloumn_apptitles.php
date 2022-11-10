@@ -13,15 +13,17 @@ class CreateAddcoloumnApptitles extends Migration
      */
     public function up()
     {
-        Schema::table('apptitles', function (Blueprint $table) {
+        Schema::table(
+            'apptitles', function (Blueprint $table) {
 
-            $table->string('title')->nullable()->after('image');
-            $table->string('image1')->nullable()->after('title');
-            $table->string('image2')->nullable()->after('image1');
-            $table->string('image3')->nullable()->after('image2');
-            $table->string('image4')->nullable()->after('image3');
+                $table->string('title')->nullable()->after('image');
+                $table->string('image1')->nullable()->after('title');
+                $table->string('image2')->nullable()->after('image1');
+                $table->string('image3')->nullable()->after('image2');
+                $table->string('image4')->nullable()->after('image3');
              
-        });
+            }
+        );
     }
 
     /**

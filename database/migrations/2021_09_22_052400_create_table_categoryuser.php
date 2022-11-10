@@ -13,15 +13,17 @@ class CreateTableCategoryuser extends Migration
      */
     public function up()
     {
-        Schema::create('category_category_user', function (Blueprint $table) {
+        Schema::create(
+            'category_category_user', function (Blueprint $table) {
           
-            $table->bigInteger('category_id')->unsigned();
-            $table->bigInteger('category_user_id')->unsigned();
-            $table->primary(['category_id', 'category_user_id']);
-            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('category_user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+                $table->bigInteger('category_id')->unsigned();
+                $table->bigInteger('category_user_id')->unsigned();
+                $table->primary(['category_id', 'category_user_id']);
+                $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
+                $table->foreign('category_user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
-        });
+            }
+        );
     }
 
     /**

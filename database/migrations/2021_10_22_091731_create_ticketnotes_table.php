@@ -13,15 +13,17 @@ class CreateTicketnotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('ticketnotes', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('ticket_id')->unsigned();
-            $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
-            $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->text('ticketnotes');
-            $table->timestamps();
-        });
+        Schema::create(
+            'ticketnotes', function (Blueprint $table) {
+                $table->id();
+                $table->bigInteger('ticket_id')->unsigned();
+                $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
+                $table->bigInteger('user_id')->unsigned()->nullable();
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+                $table->text('ticketnotes');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

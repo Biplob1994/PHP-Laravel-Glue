@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('tickets', function (Blueprint $table) {
-            $table->string('purchasecode')->nullable()->after('project');
-            $table->string('purchasecodesupport')->nullable()->after('purchasecode');
-        });
+        Schema::table(
+            'tickets', function (Blueprint $table) {
+                $table->string('purchasecode')->nullable()->after('project');
+                $table->string('purchasecodesupport')->nullable()->after('purchasecode');
+            }
+        );
     }
 
     /**

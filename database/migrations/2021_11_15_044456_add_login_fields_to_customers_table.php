@@ -13,10 +13,12 @@ class AddLoginFieldsToCustomersTable extends Migration
      */
     public function up()
     {
-        Schema::table('customers', function (Blueprint $table) {
-            $table->datetime('last_login_at')->nullable()->after('password');
-            $table->string('last_login_ip')->nullable()->after('last_login_at');
-        });
+        Schema::table(
+            'customers', function (Blueprint $table) {
+                $table->datetime('last_login_at')->nullable()->after('password');
+                $table->string('last_login_ip')->nullable()->after('last_login_at');
+            }
+        );
     }
 
     /**
@@ -26,8 +28,10 @@ class AddLoginFieldsToCustomersTable extends Migration
      */
     public function down()
     {
-        Schema::table('customers', function (Blueprint $table) {
-            //
-        });
+        Schema::table(
+            'customers', function (Blueprint $table) {
+                //
+            }
+        );
     }
 }

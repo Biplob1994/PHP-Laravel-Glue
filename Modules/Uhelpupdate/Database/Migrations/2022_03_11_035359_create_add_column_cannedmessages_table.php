@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cannedmessages', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->longtext('messages');
-            $table->boolean('status');
-            $table->timestamps();
-        });
+        Schema::create(
+            'cannedmessages', function (Blueprint $table) {
+                $table->id();
+                $table->string('title');
+                $table->longtext('messages');
+                $table->boolean('status');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

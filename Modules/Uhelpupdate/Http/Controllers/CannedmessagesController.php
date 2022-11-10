@@ -20,6 +20,7 @@ class CannedmessagesController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
      * @return Renderable
      */
     public function index()
@@ -37,52 +38,58 @@ class CannedmessagesController extends Controller
         $post = Pages::all();
         $data['page'] = $post;
 
-        if(request()->ajax()){
+        if(request()->ajax()) {
 
             $data = Cannedmessages::latest()->get();
             return DataTables::of($data)
-            ->addColumn('action', function($data){
-            	$button = '<div class = "d-flex">';
-				if(Auth::user()->can('Canned Response Edit')){
-		
-					$button .= '<a href="'.route('admin.cannedmessages.edit',$data->id).'" class="action-btns1 edit-testimonial"><i class="feather feather-edit text-primary" data-id="'.$data->id.'"data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i></a>';
-				}else{
-				    $button .= '~';
-				}
-				if(Auth::user()->can('Canned Response Delete')){
-					$button .= '<a href="javascript:void(0)" data-id="'.$data->id.'" class="action-btns1" id="delete-cannedmessages" ><i class="feather feather-trash-2 text-danger" data-id="'.$data->id.'" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i></a>';
-				}else{
-				    $button .= '~';
-				}
-           	 	$button .= '</div>';
-            	return $button;
-          	})
-			->addColumn('checkbox', function($data){
-				if(Auth::user()->can('Canned Response Delete')){
-					return '<input type="checkbox" name="spruko_checkbox[]" class="checkall" value="'.$data->id.'" />';
-				}else{
-					return '<input type="checkbox" name="spruko_checkbox[]" class="checkall" value="'.$data->id.'" disabled />';
-				}
-			})
-            ->addColumn('status', function($data){
-                if(Auth::user()->can('Canned Response Edit')){
-                    if($data->status == '1'){
-                        return '
+                ->addColumn(
+                    'action', function ($data) {
+                        $button = '<div class = "d-flex">';
+                        if(Auth::user()->can('Canned Response Edit')) {
+        
+                            $button .= '<a href="'.route('admin.cannedmessages.edit', $data->id).'" class="action-btns1 edit-testimonial"><i class="feather feather-edit text-primary" data-id="'.$data->id.'"data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i></a>';
+                        }else{
+                            $button .= '~';
+                        }
+                        if(Auth::user()->can('Canned Response Delete')) {
+                            $button .= '<a href="javascript:void(0)" data-id="'.$data->id.'" class="action-btns1" id="delete-cannedmessages" ><i class="feather feather-trash-2 text-danger" data-id="'.$data->id.'" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i></a>';
+                        }else{
+                            $button .= '~';
+                        }
+                        $button .= '</div>';
+                        return $button;
+                    }
+                )
+            ->addColumn(
+                'checkbox', function ($data) {
+                    if(Auth::user()->can('Canned Response Delete')) {
+                        return '<input type="checkbox" name="spruko_checkbox[]" class="checkall" value="'.$data->id.'" />';
+                    }else{
+                        return '<input type="checkbox" name="spruko_checkbox[]" class="checkall" value="'.$data->id.'" disabled />';
+                    }
+                }
+            )
+            ->addColumn(
+                'status', function ($data) {
+                    if(Auth::user()->can('Canned Response Edit')) {
+                        if($data->status == '1') {
+                            return '
                         <label class="custom-switch form-switch mb-0">
                             <input type="checkbox" name="status" data-id="'.$data->id.'" id="myonoffswitch'.$data->id.'" value="1" class="custom-switch-input tswitch" checked>
                             <span class="custom-switch-indicator"></span>
                         </label>';
-                    }else{
-                        return '
+                        }else{
+                            return '
                         <label class="custom-switch form-switch mb-0">
                             <input type="checkbox" name="status" data-id="'.$data->id.'" id="myonoffswitch'.$data->id.'" value="1" class="custom-switch-input tswitch">
                             <span class="custom-switch-indicator"></span>
                         </label>';
+                        }
+                    }else{
+                        return '~';
                     }
-                }else{
-                    return '~';
                 }
-            })
+            )
             ->rawColumns(['action','checkbox', 'status'])
             ->addIndexColumn()
             ->make(true);
@@ -94,6 +101,7 @@ class CannedmessagesController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
      * @return Renderable
      */
     public function create()
@@ -116,29 +124,35 @@ class CannedmessagesController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param Request $request
+     *
+     * @param  Request $request
      * @return Renderable
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $request->validate(
+            [
 
             'title'=> 'required|max:255',
             'message' => 'required',
             
-        ]);
+            ]
+        );
 
-        Cannedmessages::create([
+        Cannedmessages::create(
+            [
             'title' => $request->title,
             'messages' => $request->message,
             'status' => $request->statuscanned ? 1 : 0,
-        ]);
+            ]
+        );
         return redirect()->route('admin.cannedmessages')->with('success', trans('langconvert.functions.updatecommon'));
     }
 
     /**
      * Show the specified resource.
-     * @param int $id
+     *
+     * @param  int $id
      * @return Renderable
      */
     public function show($id)
@@ -150,7 +164,8 @@ class CannedmessagesController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * @param int $id
+     *
+     * @param  int $id
      * @return Renderable
      */
     public function edit($id)
@@ -176,8 +191,9 @@ class CannedmessagesController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
+     *
+     * @param  Request $request
+     * @param  int     $id
      * @return Renderable
      */
     public function update(Request $request, $id)
@@ -188,12 +204,13 @@ class CannedmessagesController extends Controller
         $cannedmessages->status = $request->statuscanned ? 1 : 0;
         $cannedmessages->update();
 
-       return redirect()->route('admin.cannedmessages')->with('success', trans('langconvert.functions.updatecommon'));
+        return redirect()->route('admin.cannedmessages')->with('success', trans('langconvert.functions.updatecommon'));
     }
 
     /**
      * Remove the specified resource from storage.
-     * @param int $id
+     *
+     * @param  int $id
      * @return Renderable
      */
     public function destroy($id)

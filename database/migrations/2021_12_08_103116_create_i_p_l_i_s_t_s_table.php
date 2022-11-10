@@ -13,15 +13,17 @@ class CreateIPLISTSTable extends Migration
      */
     public function up()
     {
-        Schema::create('i_p_l_i_s_t_s', function (Blueprint $table) {
-            $table->id();
-            $table->string('ip');
-            $table->string('country')->nullable();
-            $table->string('entrytype')->nullable();
-            $table->string('types')->nullable();
-            $table->datetime('start')->nullable();
-            $table->timestamps();
-        });
+        Schema::create(
+            'i_p_l_i_s_t_s', function (Blueprint $table) {
+                $table->id();
+                $table->string('ip');
+                $table->string('country')->nullable();
+                $table->string('entrytype')->nullable();
+                $table->string('types')->nullable();
+                $table->datetime('start')->nullable();
+                $table->timestamps();
+            }
+        );
     }
 
     /**

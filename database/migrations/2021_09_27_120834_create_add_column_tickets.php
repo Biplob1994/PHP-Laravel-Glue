@@ -13,12 +13,14 @@ class CreateAddColumnTickets extends Migration
      */
     public function up()
     {
-        Schema::table('tickets', function (Blueprint $table) {
-            $table->bigInteger('category_id')->nullable()->unsigned()->after('ticket_id');
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->text('note')->after('message')->nullable();
+        Schema::table(
+            'tickets', function (Blueprint $table) {
+                $table->bigInteger('category_id')->nullable()->unsigned()->after('ticket_id');
+                $table->foreign('category_id')->references('id')->on('categories');
+                $table->text('note')->after('message')->nullable();
 
-        });
+            }
+        );
     }
 
     /**

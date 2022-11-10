@@ -13,14 +13,16 @@ class CreateArticleCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('article_comments', function (Blueprint $table) {
+        Schema::create(
+            'article_comments', function (Blueprint $table) {
 
-            $table->increments('id')->unsigned();
-            $table->integer('article_id')->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->text('comment');
-            $table->timestamps();
-        });
+                $table->increments('id')->unsigned();
+                $table->integer('article_id')->unsigned();
+                $table->integer('user_id')->unsigned();
+                $table->text('comment');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('envatocategoryassign', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('category_id')->unsigned();
-            $table->bigInteger('envato_enable')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
-            $table->timestamps();
-        });
+        Schema::create(
+            'envatocategoryassign', function (Blueprint $table) {
+                $table->id();
+                $table->bigInteger('category_id')->unsigned();
+                $table->bigInteger('envato_enable')->unsigned();
+                $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

@@ -22,7 +22,8 @@ class Setting1TableSeeder extends Seeder
     {
         Model::unguard();
 
-        DB::table('settings')->insert([
+        DB::table('settings')->insert(
+            [
             [
                 'key' => 'ENVATO_EXPIRED_BLOCK',
                 'value' => 'off',
@@ -59,18 +60,20 @@ class Setting1TableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
-        ]);
+            ]
+        );
 
 
          // create permissions
-		$this->createPermissions();
+        $this->createPermissions();
 
         // assign roles and permissions
-		$this->assignPermissions();
+        $this->assignPermissions();
     }
 
 
-    public function createPermissions(){
+    public function createPermissions()
+    {
 
         // App Info
         Permission::create(['name' => 'Pages Create'  , 'guard_name' => 'web',]);
@@ -85,12 +88,12 @@ class Setting1TableSeeder extends Seeder
     }
 
     public function assignPermissions()
-	{
+    {
 
         $role = Role::where('name', 'Superadmin')->first();
         $permissions = Permission::get();
         foreach ( $permissions as $code ) {
-			$role->givePermissionTo($code);
-		};
+            $role->givePermissionTo($code);
+        };
     }
 }

@@ -13,15 +13,17 @@ class CreateAnnouncementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('announcements', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->longtext('notice');
-            $table->date('startdate');
-            $table->date('enddate');
-            $table->boolean('status')->nullable();
-            $table->timestamps();
-        });
+        Schema::create(
+            'announcements', function (Blueprint $table) {
+                $table->id();
+                $table->string('title');
+                $table->longtext('notice');
+                $table->date('startdate');
+                $table->date('enddate');
+                $table->boolean('status')->nullable();
+                $table->timestamps();
+            }
+        );
     }
 
     /**

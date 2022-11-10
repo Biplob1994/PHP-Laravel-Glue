@@ -13,14 +13,16 @@ class CreateArticleRepliesTable extends Migration
      */
     public function up()
     {
-        Schema::create('article_replies', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
-            $table->integer('article_comment_id')->unsigned();
-            // $table->string('name');
-            $table->integer('user_id')->unsigned();
-            $table->text('message');
-            $table->timestamps();
-        });
+        Schema::create(
+            'article_replies', function (Blueprint $table) {
+                $table->increments('id')->unsigned();
+                $table->integer('article_comment_id')->unsigned();
+                // $table->string('name');
+                $table->integer('user_id')->unsigned();
+                $table->text('message');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

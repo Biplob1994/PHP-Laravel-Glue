@@ -17,12 +17,14 @@ class UhelpupdateDatabaseSeeder extends Seeder
         Model::unguard();
 
         // $this->call("OthersTableSeeder");
-        $this->call([
+        $this->call(
+            [
 
             PermissionTableSeeder::class,
             SettingtableTableSeeder::class,
             Setting1TableSeeder::class,
             EmailTemplateSeederTableSeeder::class,
-        ]);
+            ]
+        );
     }
 }

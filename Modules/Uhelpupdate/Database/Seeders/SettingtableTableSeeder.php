@@ -17,13 +17,15 @@ class SettingtableTableSeeder extends Seeder
     {
         Model::unguard();
 
-        DB::table('settings')->insert([
+        DB::table('settings')->insert(
+            [
             [
                 'key' => 'ENVATO_ON',
                 'value' => 'on',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
-        ]);
+            ]
+        );
     }
 }

@@ -13,26 +13,28 @@ class CreateApptitlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('apptitles', function (Blueprint $table) {
-            $table->id();
-            $table->string('searchtitle');
-            $table->string('searchsub')->nullable();
-            $table->string('featurecheck');
-            $table->string('featuretitle');
-            $table->string('featuresub')->nullable();
-            $table->string('testimonialcheck');
-            $table->string('testimonialtitle');
-            $table->string('testimonialsub')->nullable();
-            $table->string('faqcheck');
-            $table->string('faqtitle');
-            $table->string('faqsub')->nullable();
-            $table->string('articlecheck');
-            $table->string('articletitle');
-            $table->string('articlesub')->nullable();
-            $table->string('checkbox')->nullable();
-            $table->string('image')->nullable();
-            $table->timestamps();
-        });
+        Schema::create(
+            'apptitles', function (Blueprint $table) {
+                $table->id();
+                $table->string('searchtitle');
+                $table->string('searchsub')->nullable();
+                $table->string('featurecheck');
+                $table->string('featuretitle');
+                $table->string('featuresub')->nullable();
+                $table->string('testimonialcheck');
+                $table->string('testimonialtitle');
+                $table->string('testimonialsub')->nullable();
+                $table->string('faqcheck');
+                $table->string('faqtitle');
+                $table->string('faqsub')->nullable();
+                $table->string('articlecheck');
+                $table->string('articletitle');
+                $table->string('articlesub')->nullable();
+                $table->string('checkbox')->nullable();
+                $table->string('image')->nullable();
+                $table->timestamps();
+            }
+        );
     }
 
     /**

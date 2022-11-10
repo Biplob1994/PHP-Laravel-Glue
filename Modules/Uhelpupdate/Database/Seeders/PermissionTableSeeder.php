@@ -21,14 +21,15 @@ class PermissionTableSeeder extends Seeder
         Model::unguard();
 
          // create permissions
-		$this->createPermissions();
+        $this->createPermissions();
 
         // assign roles and permissions
-		$this->assignPermissions();
+        $this->assignPermissions();
         // $this->call("OthersTableSeeder");
     }
 
-    public function createPermissions(){
+    public function createPermissions()
+    {
 
         //  Canned Response
         Permission::create(['name' => 'Canned Response Access'  , 'guard_name' => 'web',]);
@@ -47,12 +48,12 @@ class PermissionTableSeeder extends Seeder
     }
 
     public function assignPermissions()
-	{
+    {
 
         $role = Role::where('name', 'Superadmin')->first();
         $permissions = Permission::get();
         foreach ( $permissions as $code ) {
-			$role->givePermissionTo($code);
-		};
+            $role->givePermissionTo($code);
+        };
     }
 }

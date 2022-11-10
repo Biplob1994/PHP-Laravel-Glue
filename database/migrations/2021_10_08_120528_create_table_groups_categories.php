@@ -13,13 +13,15 @@ class CreateTableGroupsCategories extends Migration
      */
     public function up()
     {
-        Schema::create('groups_categories', function (Blueprint $table) {
-            $table->bigInteger('group_id')->unsigned();
-            $table->bigInteger('category_id')->unsigned();
-            $table->primary(['group_id', 'category_id']);
-            $table->foreign('group_id')->references('id')->on('groups')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
-        });
+        Schema::create(
+            'groups_categories', function (Blueprint $table) {
+                $table->bigInteger('group_id')->unsigned();
+                $table->bigInteger('category_id')->unsigned();
+                $table->primary(['group_id', 'category_id']);
+                $table->foreign('group_id')->references('id')->on('groups')->onUpdate('cascade')->onDelete('cascade');
+                $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
+            }
+        );
     }
 
     /**

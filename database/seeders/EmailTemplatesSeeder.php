@@ -14,7 +14,8 @@ class EmailTemplatesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('email_templates')->insert([
+        DB::table('email_templates')->insert(
+            [
 
             [
                 'code' => 'customer_sendmail_contactus',
@@ -158,6 +159,7 @@ class EmailTemplatesSeeder extends Seeder
             ],
 
 
-        ]);
+            ]
+        );
     }
 }

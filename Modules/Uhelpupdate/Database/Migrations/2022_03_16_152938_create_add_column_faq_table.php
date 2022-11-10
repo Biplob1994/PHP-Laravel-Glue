@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('faq_list', function (Blueprint $table) {
-            $table->boolean('status')->nullable()->after('answer');
-            $table->boolean('privatemode')->nullable()->after('status');
-        });
+        Schema::table(
+            'faq_list', function (Blueprint $table) {
+                $table->boolean('status')->nullable()->after('answer');
+                $table->boolean('privatemode')->nullable()->after('status');
+            }
+        );
     }
 
     /**

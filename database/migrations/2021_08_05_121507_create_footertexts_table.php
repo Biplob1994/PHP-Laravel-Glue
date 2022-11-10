@@ -13,11 +13,13 @@ class CreateFootertextsTable extends Migration
      */
     public function up()
     {
-        Schema::create('footertexts', function (Blueprint $table) {
-            $table->id();
-            $table->string('copyright');
-            $table->timestamps();
-        });
+        Schema::create(
+            'footertexts', function (Blueprint $table) {
+                $table->id();
+                $table->string('copyright');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

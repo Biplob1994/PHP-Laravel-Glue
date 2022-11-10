@@ -13,13 +13,15 @@ class CreateProjectsCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('projects_categories', function (Blueprint $table) {
-            $table->bigInteger('projects_id')->unsigned();
-            $table->bigInteger('category_id')->unsigned();
-            $table->primary(['projects_id', 'category_id']);
-            $table->foreign('projects_id')->references('id')->on('projects')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
-        });
+        Schema::create(
+            'projects_categories', function (Blueprint $table) {
+                $table->bigInteger('projects_id')->unsigned();
+                $table->bigInteger('category_id')->unsigned();
+                $table->primary(['projects_id', 'category_id']);
+                $table->foreign('projects_id')->references('id')->on('projects')->onUpdate('cascade')->onDelete('cascade');
+                $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
+            }
+        );
     }
 
     /**

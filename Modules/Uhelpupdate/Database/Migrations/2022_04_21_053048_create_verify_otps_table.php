@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('verify_otps', function (Blueprint $table) {
+        Schema::create(
+            'verify_otps', function (Blueprint $table) {
             
-            $table->id();
-            $table->integer('cust_id');
-            $table->string('otp');
-            $table->timestamps();
-        });
+                $table->id();
+                $table->integer('cust_id');
+                $table->string('otp');
+                $table->timestamps();
+            }
+        );
     }
 
     /**
